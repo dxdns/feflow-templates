@@ -2,6 +2,7 @@
 	import { onMount, type Snippet } from "svelte"
 	import {
 		Button,
+		CustomLink,
 		getThemeConfig,
 		themeModeState,
 		themeModeUtil,
@@ -47,7 +48,14 @@
 					{@html "&copy;"}
 					{new Date().getFullYear()}
 				</span>
-				<a href="https://dxdns.dev" target="_blank">dxdns</a>
+				<CustomLink
+					pathname=""
+					href="https://dxdns.dev"
+					target="_blank"
+					hoverUnderline="right"
+				>
+					dxdns
+				</CustomLink>
 			</div>
 			<Button
 				variant="outlined"

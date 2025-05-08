@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "dev:portfolio": "npm run dev -w portfolio",
+    "build:portfolio": "npm run build -w portfolio",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

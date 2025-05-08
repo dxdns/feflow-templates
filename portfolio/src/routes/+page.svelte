@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		GithubIcon,
 		LinkedinIcon,
@@ -12,7 +12,18 @@
 		CustomLink,
 		HoverFollower
 	} from "@dxdns/feflow"
+	import type { PageData } from "./$types"
+
+	let { data }: { data: PageData } = $props()
 </script>
+
+<svelte:head>
+	<title>{data.title} - portfolio demo example</title>
+	<meta
+		name="description"
+		content="feflow svelte components ui - portfolio demo example"
+	/>
+</svelte:head>
 
 <header>
 	<h3>Diógenes Rodrigues</h3>
