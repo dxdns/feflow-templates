@@ -49,7 +49,6 @@
 					{new Date().getFullYear()}
 				</span>
 				<CustomLink
-					pathname=""
 					href="https://dxdns.dev"
 					target="_blank"
 					hoverUnderline="right"
