@@ -1,0 +1,22 @@
+{
+  "name": "feflow-examples",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "portfolio"
+  ],
+  "scripts": {
+    "dev:portfolio": "npm run dev -w portfolio",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dxdns/feflow-examples.git"
+  },
+  "author": "dxdns",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dxdns/feflow-examples/issues"
+  },
+  "homepage": "https://github.com/dxdns/feflow-examples#readme"
+}
