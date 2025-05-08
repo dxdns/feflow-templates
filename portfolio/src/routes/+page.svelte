@@ -5,35 +5,25 @@
 		OpenInNewIcon,
 		RedditIcon
 	} from "$lib/icons"
-	import { Button, Card, getThemeConfig, HoverFollower } from "@dxdns/feflow"
-	import styles from "./home.module.css"
-
-	const theme = $derived(getThemeConfig())
+	import {
+		Actions,
+		Button,
+		Card,
+		CustomLink,
+		HoverFollower
+	} from "@dxdns/feflow"
 </script>
 
 <header>
-	<a href="/">
-		<h3>Jhon Doe</h3>
-	</a>
+	<h3>Diógenes Rodrigues</h3>
 	<p class="text-muted">Full Stack Developer at TechSolutions</p>
-	<div class="social">
-		<a href="https://linkedin.com/in/dxdns" target="_blank">
-			<LinkedinIcon fill={theme.colorText} />
-		</a>
-		<a href="https://github.com/dxdns" target="_blank">
-			<GithubIcon fill={theme.colorText} />
-		</a>
-		<a href="https://reddit.com/user/dxdns_dev" target="_blank">
-			<RedditIcon fill={theme.colorText} />
-		</a>
-	</div>
 </header>
 
-<section class={styles.projects} id="projects">
+<section id="projects">
 	<h2>Projects</h2>
-	<div class={styles.content}>
+	<div class="projectsContent">
 		<a href="/">
-			<Card class={styles.card}>
+			<Card style="min-height: 250px; max-height: 250px;">
 				<h4>TaskMaster</h4>
 				<p class="text-muted">
 					A project management tool for teams to collaborate on tasks and track
@@ -42,7 +32,7 @@
 			</Card>
 		</a>
 		<a href="/">
-			<Card class={styles.card}>
+			<Card style="min-height: 250px; max-height: 250px;">
 				<h4>ChatWave</h4>
 				<p class="text-muted">
 					A real-time chat application with voice and video integration, built
@@ -61,24 +51,26 @@
 	</Button>
 </section>
 
-<section class={styles.workExperience} id="work-experience">
+<section id="work-experience">
 	<h2>Work Experience</h2>
-	<Card>
-		<div class={styles.cardContent}>
-			<div>
-				<h4>Lead Developer</h4>
-				<p class="text-muted">TechSolutions Inc.</p>
+	<div use:Actions.glowOnHoverAction>
+		<Card>
+			<div class="workExperienceContent">
+				<div>
+					<h4>Lead Developer</h4>
+					<p class="text-muted">TechSolutions Inc.</p>
+				</div>
+				<p class="text-muted">2022 - Present</p>
 			</div>
-			<span class="text-muted">2022 - Present</span>
-		</div>
-	</Card>
+		</Card>
+	</div>
 </section>
 
-<section class={styles.blog} id="blog">
+<section id="blog">
 	<h2>Blog</h2>
 	<HoverFollower>
 		<a href="/">
-			<Card class={styles.card}>
+			<Card>
 				<h4>The Future of Full Stack Development: Trends to Watch</h4>
 				<p class="text-muted">
 					Exploring emerging technologies and practices that will shape the
@@ -87,7 +79,7 @@
 			</Card>
 		</a>
 		<a href="/">
-			<Card class={styles.card}>
+			<Card>
 				<h4>My Journey to Becoming a Software Engineer</h4>
 				<p class="text-muted">
 					From a beginner to a full stack developer, I share my personal journey
@@ -102,15 +94,54 @@
 	</Button>
 </section>
 
+<section id="connect">
+	<h2>Connect</h2>
+	<p class="text-muted">
+		Feel free to contact me at
+		<CustomLink pathname="mailto:dxdns@hotmail.com" hoverUnderline="center">
+			dxdns@hotmail.com
+		</CustomLink>
+	</p>
+	<div class="social">
+		<a href="https://linkedin.com/in/dxdns" target="_blank">
+			<LinkedinIcon />
+		</a>
+		<a href="https://github.com/dxdns" target="_blank">
+			<GithubIcon />
+		</a>
+		<a href="https://reddit.com/user/dxdns_dev" target="_blank">
+			<RedditIcon />
+		</a>
+	</div>
+</section>
+
 <style>
-	a::after {
-		all: unset;
+	section {
+		text-align: center;
 	}
-	
+
+	p,
+	h2 {
+		text-align: left;
+	}
+
+	.projectsContent {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+		gap: 1rem;
+		padding: 1rem 0;
+	}
+
+	.workExperienceContent {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+	}
+
 	.social {
 		display: flex;
 		gap: 1rem;
 		align-items: center;
-		padding: 1rem 0;
 	}
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from "svelte"
+	import { onMount, type Snippet } from "svelte"
 	import {
 		Button,
 		getThemeConfig,
@@ -11,21 +11,17 @@
 	import "./globals.css"
 	import { DarkModeIcon, LightModeIcon } from "$lib/icons"
 
-	let { children } = $props()
+	let { children }: { children: Snippet } = $props()
 
 	const { getThemeMode, toggleThemeMode } = themeModeUtil()
+	const _themeModeState = themeModeState()
 
 	let activeThemeMode: ThemeModeType = $state("dark")
 
-	function initTheme() {
-		const _themeModeState = themeModeState()
+	onMount(() => {
 		const _themeMode = getThemeMode()
 		activeThemeMode = _themeMode
 		_themeModeState.setThemeMode(_themeMode)
-	}
-
-	onMount(() => {
-		initTheme()
 	})
 </script>
 
@@ -46,14 +42,13 @@
 	<div class="container">
 		{@render children()}
 		<footer class="footer">
-			<span>
-				<div class="text-muted">
+			<div>
+				<span class="text-muted">
 					{@html "&copy;"}
 					{new Date().getFullYear()}
-					|
-				</div>
+				</span>
 				<a href="https://dxdns.dev" target="_blank">dxdns</a>
-			</span>
+			</div>
 			<Button
 				variant="outlined"
 				onclick={() => {
@@ -92,12 +87,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-	}
-
-	.footer > span {
-		display: flex;
-		align-items: center;
-		gap: 0.3rem;
 	}
 
 	@media (max-width: 425px) {
