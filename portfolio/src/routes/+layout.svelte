@@ -4,7 +4,6 @@
 		Button,
 		CustomLink,
 		getThemeConfig,
-		themeModeState,
 		themeModeUtil,
 		ThemeProvider,
 		type ThemeModeType
@@ -15,14 +14,12 @@
 	let { children }: { children: Snippet } = $props()
 
 	const { getThemeMode, toggleThemeMode } = themeModeUtil()
-	const _themeModeState = themeModeState()
 
 	let activeThemeMode: ThemeModeType = $state("dark")
 
 	onMount(() => {
 		const _themeMode = getThemeMode()
 		activeThemeMode = _themeMode
-		_themeModeState.setThemeMode(_themeMode)
 	})
 </script>
 

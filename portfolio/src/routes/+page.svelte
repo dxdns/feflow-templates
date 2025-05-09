@@ -26,7 +26,7 @@
 </svelte:head>
 
 <header>
-	<h3>Diógenes Rodrigues</h3>
+	<h1>Diógenes Rodrigues</h1>
 	<p class="text-muted">Full Stack Developer at TechSolutions</p>
 </header>
 
@@ -154,5 +154,15 @@
 		display: flex;
 		gap: 1rem;
 		align-items: center;
+	}
+
+	#connect {
+		line-height: 3;
+	}
+
+	@media screen and (max-width: 425px) {
+		.projectsContent {
+			gap: 0;
+		}
 	}
 </style>

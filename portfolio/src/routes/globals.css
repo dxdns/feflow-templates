@@ -12,8 +12,28 @@
 
 body {
 	font-family: "Inter", sans-serif;
+	line-height: 1.2;
 }
 
-a {
-	text-decoration: none !important;
+p {
+	line-height: 1.5;
+}
+
+h1 {
+	line-height: 2.5;
+}
+
+h3,
+h4 {
+	line-height: 3;
+}
+
+@media screen and (max-width: 425px) {
+	h1 {
+		font-size: 1.6rem;
+	}
+
+	h2 {
+		font-size: 1.3rem;
+	}
 }
