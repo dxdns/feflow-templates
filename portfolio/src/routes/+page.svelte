@@ -7,6 +7,7 @@
 	} from "$lib/icons"
 	import {
 		Actions,
+		Avatar,
 		Button,
 		Card,
 		CustomLink,
@@ -25,10 +26,9 @@
 	/>
 </svelte:head>
 
-<header>
-	<h1>Diógenes Rodrigues</h1>
-	<p class="text-muted">Full Stack Developer at TechSolutions</p>
-</header>
+<section id="about">
+	<h2>About</h2>
+</section>
 
 <section id="projects">
 	<h2>Projects</h2>
@@ -113,22 +113,18 @@
 			dxdns@hotmail.com
 		</CustomLink>
 	</p>
-	<div class="social">
-		<a href="https://linkedin.com/in/dxdns" target="_blank">
-			<LinkedinIcon />
-		</a>
-		<a href="https://github.com/dxdns" target="_blank">
-			<GithubIcon />
-		</a>
-		<a href="https://reddit.com/user/dxdns_dev" target="_blank">
-			<RedditIcon />
-		</a>
-	</div>
 </section>
 
 <style>
 	section {
 		text-align: center;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		scroll-snap-align: center;
+		padding: 40px;
+		box-sizing: border-box;
 	}
 
 	p,
@@ -138,7 +134,7 @@
 
 	.projectsContent {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 		gap: 1rem;
 		padding: 1rem 0;
 	}
@@ -148,12 +144,6 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
-	}
-
-	.social {
-		display: flex;
-		gap: 1rem;
-		align-items: center;
 	}
 
 	#connect {

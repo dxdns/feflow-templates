@@ -1,15 +1,23 @@
 <script lang="ts">
 	import { onMount, type Snippet } from "svelte"
 	import {
+		Avatar,
 		Button,
-		CustomLink,
+		Drawer,
 		getThemeConfig,
 		themeModeUtil,
 		ThemeProvider,
 		type ThemeModeType
 	} from "@dxdns/feflow"
 	import "./globals.css"
-	import { DarkModeIcon, LightModeIcon } from "$lib/icons"
+	import {
+		DarkModeIcon,
+		GithubIcon,
+		LightModeIcon,
+		LinkedinIcon,
+		RedditIcon
+	} from "$lib/icons"
+	import avatar from "$lib/assets/avatar.jpeg"
 
 	let { children }: { children: Snippet } = $props()
 
@@ -38,50 +46,87 @@
 
 <ThemeProvider>
 	<div class="container">
-		{@render children()}
-		<footer class="footer">
-			<div>
-				<span class="text-muted">
-					{@html "&copy;"}
-					{new Date().getFullYear()}
-				</span>
-				<CustomLink
-					href="https://dxdns.dev"
-					target="_blank"
-					hoverUnderline="right"
-				>
-					dxdns
-				</CustomLink>
-			</div>
-			<Button
-				variant="outlined"
-				onclick={() => {
-					toggleThemeMode((t) => {
-						activeThemeMode = t
-					})
-				}}
-			>
-				{@const colors = getThemeConfig()}
-				{#if activeThemeMode === "dark"}
-					<LightModeIcon fill={colors.colorText} />
-				{:else}
-					<DarkModeIcon fill={colors.colorText} />
-				{/if}
-			</Button>
-		</footer>
+		<aside>
+			<Drawer variant="permanent">
+				{#snippet header()}
+					<div
+						style="display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center;"
+					>
+						<Avatar src={avatar} />
+						<div>
+							<h4>Diógenes Rodrigues</h4>
+							<p class="text-muted">Full Stack Developer at TechSolutions</p>
+						</div>
+					</div>
+				{/snippet}
+				{#snippet content()}
+					<nav>
+						<ul style="padding: 2rem; line-height: 2;">
+							<li><a href="#about">About</a></li>
+							<li><a href="#projects">Projects</a></li>
+							<li><a href="#work-experience">Experience</a></li>
+							<li><a href="#blog">Blog</a></li>
+							<li><a href="#connect">Connect</a></li>
+						</ul>
+					</nav>
+					<footer class="footer">
+						<div class="social">
+							<a href="https://linkedin.com/in/dxdns" target="_blank">
+								<LinkedinIcon />
+							</a>
+							<a href="https://github.com/dxdns" target="_blank">
+								<GithubIcon />
+							</a>
+							<a href="https://reddit.com/user/dxdns_dev" target="_blank">
+								<RedditIcon />
+							</a>
+						</div>
+						<Button
+							variant="outlined"
+							onclick={() => {
+								toggleThemeMode((t) => {
+									activeThemeMode = t
+								})
+							}}
+						>
+							{@const colors = getThemeConfig()}
+							{#if activeThemeMode === "dark"}
+								<LightModeIcon fill={colors.colorText} />
+							{:else}
+								<DarkModeIcon fill={colors.colorText} />
+							{/if}
+						</Button>
+					</footer>
+				{/snippet}
+			</Drawer>
+		</aside>
+
+		<main>
+			{@render children()}
+		</main>
 	</div>
 </ThemeProvider>
 
 <style>
 	.container {
-		padding: 3rem 0;
-		width: 600px;
-		margin: 0 auto;
-		min-height: 100vh;
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-template-areas: "sidebar main";
+	}
+
+	aside {
+		grid-area: sidebar;
+	}
+
+	main {
+		grid-area: main;
+		margin: 3rem auto;
+	}
+
+	.social {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: 2rem;
+		gap: 0.5rem;
+		align-items: center;
 	}
 
 	.footer {
@@ -91,11 +136,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-	}
-
-	@media (max-width: 425px) {
-		.container {
-			width: 80%;
-		}
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		left: 0;
 	}
 </style>
