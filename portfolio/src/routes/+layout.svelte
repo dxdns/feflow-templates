@@ -5,7 +5,7 @@
 		Button,
 		Drawer,
 		getThemeConfig,
-		themeModeUtil,
+		themeMode,
 		ThemeProvider,
 		type ThemeModeType
 	} from "@dxdns/feflow"
@@ -18,10 +18,11 @@
 		RedditIcon
 	} from "$lib/icons"
 	import avatar from "$lib/assets/avatar.jpeg"
+	import styles from "./layout.module.css"
 
 	let { children }: { children: Snippet } = $props()
 
-	const { getThemeMode, toggleThemeMode } = themeModeUtil()
+	const { getThemeMode, toggleThemeMode } = themeMode()
 
 	let activeThemeMode: ThemeModeType = $state("dark")
 
@@ -45,17 +46,15 @@
 </svelte:head>
 
 <ThemeProvider>
-	<div class="container">
-		<aside>
-			<Drawer variant="permanent">
+	<div class={styles.container}>
+		<aside class={styles.sidebar}>
+			<Drawer class={styles.drawer} variant="permanent">
 				{#snippet header()}
-					<div
-						style="display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center;"
-					>
-						<Avatar src={avatar} />
+					<div class={styles.header}>
+						<Avatar src={avatar} width="80px" height="80px" />
 						<div>
 							<h4>Diógenes Rodrigues</h4>
-							<p class="text-muted">Full Stack Developer at TechSolutions</p>
+							<small class="text-muted">Full Stack Developer</small>
 						</div>
 					</div>
 				{/snippet}
@@ -69,8 +68,8 @@
 							<li><a href="#connect">Connect</a></li>
 						</ul>
 					</nav>
-					<footer class="footer">
-						<div class="social">
+					<footer class={styles.footer}>
+						<div class={styles.social}>
 							<a href="https://linkedin.com/in/dxdns" target="_blank">
 								<LinkedinIcon />
 							</a>
@@ -101,44 +100,8 @@
 			</Drawer>
 		</aside>
 
-		<main>
+		<main class={styles.content}>
 			{@render children()}
 		</main>
 	</div>
 </ThemeProvider>
-
-<style>
-	.container {
-		display: grid;
-		grid-template-columns: auto auto;
-		grid-template-areas: "sidebar main";
-	}
-
-	aside {
-		grid-area: sidebar;
-	}
-
-	main {
-		grid-area: main;
-		margin: 3rem auto;
-	}
-
-	.social {
-		display: flex;
-		gap: 0.5rem;
-		align-items: center;
-	}
-
-	.footer {
-		margin-top: 1rem;
-		padding: 1rem;
-		border-top: 1px solid var(--feflow-color-border);
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		position: fixed;
-		bottom: 0;
-		right: 0;
-		left: 0;
-	}
-</style>

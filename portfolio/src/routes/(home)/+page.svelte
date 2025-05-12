@@ -13,7 +13,7 @@
 		CustomLink,
 		HoverFollower
 	} from "@dxdns/feflow"
-	import type { PageData } from "./$types"
+	import type { PageData } from "../$types"
 
 	let { data }: { data: PageData } = $props()
 </script>
